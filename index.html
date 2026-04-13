@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amor Infinito 💖</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    overflow:hidden;
+    font-family:'Segoe UI', sans-serif;
+    color:white;
+}
+
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7') no-repeat center/cover;
+    opacity:0.3;
+    z-index:-1;
+}
+
+h1{
+    text-align:center;
+    font-size:30px;
+    color:#ff4da6;
+    text-shadow:0 0 10px #ff4da6,0 0 30px #ff99cc;
+    animation: brillo 2s infinite alternate;
+}
+
+@keyframes brillo{
+    from{ text-shadow:0 0 10px #ff4da6;}
+    to{ text-shadow:0 0 30px #ff99cc;}
+}
+
+.galeria{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.img-box{
+    position:relative;
+    cursor:pointer;
+}
+
+.img-box img{
+    width:150px;
+    height:200px;
+    object-fit:cover;
+    border-radius:15px;
+    box-shadow:0 0 20px pink;
+    transition:0.3s;
+}
+
+.img-box:hover img{
+    transform:scale(1.1);
+}
+
+.frase{
+    position:absolute;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(2, 1, 1, 0.95);
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:14px;
+    display:none;
+    animation: aparecer 0.5s ease;
+    box-shadow:0 0 15px pink;
+}
+
+@keyframes aparecer{
+    from{opacity:0; transform:translateX(-50%) scale(0.8);}
+    to{opacity:1; transform:translateX(-50%) scale(1);}
+}
+
+button{
+    margin-top:20px;
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    background:#ff0080;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 0 20px #ff0080;
+}
+
+#mensaje{
+    margin-top:20px;
+    font-size:19px;
+    display:none;
+    text-align:center;
+    animation: aparecer 1s ease;
+}
+
+.corazon{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:#ff4da6;
+    transform: rotate(45deg);
+    animation: subir 6s linear infinite;
+}
+
+.corazon::before,
+.corazon::after{
+    content:"";
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:#ff4da6;
+    border-radius:50%;
+}
+
+.corazon::before{ top:-10px; left:0; }
+.corazon::after{ left:-10px; top:0; }
+
+@keyframes subir{
+    0%{ transform: translateY(0) scale(1) rotate(45deg); opacity:1;}
+    100%{ transform: translateY(-800px) scale(1.5) rotate(45deg); opacity:0;}
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>💖 Eres lo más bonito que me pasó en la vida 💖</h1>
+
+<div class="galeria">
+
+<div class="img-box" onclick="mostrarFrase(this)">
+<img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2">
+<div class="frase">💞 Desde que llegaste… mi corazón sonríe sin razón 💞</div>
+</div>
+
+<div class="img-box" onclick="mostrarFrase(this)">
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+<div class="frase">💖 No eres un sueño… eres la realidad más hermosa que tengo 💖</div>
+</div>
+
+<div class="img-box" onclick="mostrarFrase(this)">
+<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9">
+<div class="frase">✨ Si te miro… encuentro todo lo que siempre soñé ✨</div>
+</div>
+
+</div>
+
+<button onclick="mostrar()">💘 Tócame 💘</button>
+
+<div id="mensaje">
+💞 No fue suerte encontrarte… fue destino 💞<br><br>
+💖 Desde que llegaste… todo en mi vida tiene sentido 💖<br><br>
+✨ No quiero un momento contigo… te quiero para siempre ✨<br><br>
+🔥 Eres esa persona que mi corazón eligió sin pensarlo 🔥<br><br>
+💘 Y si volviera a nacer… te elegiría mil veces más 💘
+</div>
+
+<script>
+function mostrar(){
+    document.getElementById("mensaje").style.display="block";
+}
+
+function mostrarFrase(elemento){
+    let frase = elemento.querySelector(".frase");
+    frase.style.display = "block";
+
+    setTimeout(()=>{
+        frase.style.display = "none";
+    },9000); 
+}
+
+function crearCorazon(){
+    const corazon = document.createElement("div");
+    corazon.classList.add("corazon");
+
+    corazon.style.left = Math.random()*100 + "vw";
+    corazon.style.animationDuration = (3 + Math.random()*3) + "s";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(()=>{
+        corazon.remove();
+    },6000);
+}
+
+setInterval(crearCorazon, 300);
+</script>
+
+</body>
+</html>
